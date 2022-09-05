@@ -3,18 +3,30 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach((item) => {
   item.onclick = () => {
-    if (item.id == "clear") {
+    if (display.innerText == "0") {
       display.innerText = "";
-    } else if (item.id == "backspace") {
+    }
+
+    if (item.id == "clear-btn") {
+      display.innerText = "";
+
+    } else if (item.id == "backspace-btn") {
       let string = display.innerText.toString();
       display.innerText = string.substr(0, string.length - 1);
-    } else if (display.innerText != "" && item.id == "equal") {
+
+    } else if (display.innerText != "" && item.id == "equal-btn") {
       display.innerText = eval(display.innerText);
-    } else if (display.innerText == "" && item.id == "equal") {
+
+    } else if (display.innerText == "" && item.id == "equal-btn") {
       display.innerText = "Empty!";
       setTimeout(() => (display.innerText = ""), 2000);
-    } else {
-      display.innerText += item.id;
+
+    } else if (item.class == "btn-circle-operator" && display.innerText == "0") {
+      display.innerText = "Empty!";
+    } 
+    
+    else {
+      display.innerText += item.innerHTML;
     }
   };
 });
